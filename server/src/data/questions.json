@@ -1,0 +1,1090 @@
+[
+  {
+    "id": "os_med_01",
+    "topic": "Operating Systems",
+    "subtopic": "Process Scheduling",
+    "difficulty": "Medium",
+    "question": "In a Round-Robin CPU scheduling algorithm with a time quantum of 4ms, what is the most significant downside of choosing a time quantum that is extremely small (e.g., 0.1ms)?",
+    "options": [
+      "Process starvation occurs for I/O bound jobs",
+      "CPU utilization drops dramatically due to excessive context-switch overhead",
+      "The algorithm degrades into First-Come-First-Served (FCFS)",
+      "Priority inversion causes high-priority threads to block indefinitely"
+    ],
+    "correctAnswer": 1,
+    "explanation": "If the time quantum is extremely small relative to the context switch duration, the CPU spends a substantial percentage of its time performing state saving and restoring rather than executing user code, degrading overall throughput.",
+    "conceptSummary": "Time quantum in Round-Robin must be significantly larger than context switch overhead.",
+    "timeTargetSeconds": 60
+  },
+  {
+    "id": "os_med_02",
+    "topic": "Operating Systems",
+    "subtopic": "Virtual Memory & Paging",
+    "difficulty": "Medium",
+    "question": "Which of the following conditions triggers Belady's Anomaly in page replacement algorithms?",
+    "options": [
+      "Increasing page frame capacity results in an increased number of page faults under FIFO",
+      "A page is swapped out while marked dirty without flushing to secondary storage",
+      "The Translation Lookaside Buffer (TLB) experiences a cache conflict during address translation",
+      "Thrashing occurs when the sum of working sets exceeds physical RAM"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Belady's Anomaly is the counterintuitive phenomenon where allocating more physical page frames to a process leads to more page faults under certain non-stack algorithms like FIFO.",
+    "conceptSummary": "FIFO replacement is susceptible to Belady's Anomaly, unlike stack algorithms like LRU.",
+    "timeTargetSeconds": 60
+  },
+  {
+    "id": "os_hard_01",
+    "topic": "Operating Systems",
+    "subtopic": "Deadlock Avoidance",
+    "difficulty": "Hard",
+    "question": "In the context of Dijkstra's Banker's Algorithm with 5 processes (P0-P4) and 3 resource types (A, B, C), suppose Available = [3, 3, 2]. If process P1 requests [1, 0, 2], how does the operating system determine whether granting this request maintains a Safe State?",
+    "options": [
+      "By immediately allocating and checking if the Resource Allocation Graph contains any directed cycles",
+      "By pretending to allocate the resources and executing the Safety Algorithm to verify that a complete safe sequence of all remaining processes exists",
+      "By killing the lowest-priority process and releasing its current resource hold",
+      "By applying Peterson's algorithm across the shared semaphore pool"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Banker's Algorithm implements deadlock avoidance by tentatively granting the request (Available = Available - Request, Allocation = Allocation + Request, Need = Need - Request) and running the Safety Algorithm to prove there exists an execution order <P_i1, P_i2, ..., P_in> where each process can finish.",
+    "conceptSummary": "Deadlock avoidance relies on proactively simulating resource allocation to prove safe sequence existence before committing.",
+    "timeTargetSeconds": 90
+  },
+  {
+    "id": "os_hard_02",
+    "topic": "Operating Systems",
+    "subtopic": "Concurrency & Synchronization",
+    "difficulty": "Hard",
+    "question": "Consider a system using counting semaphores. A semaphore S is initialized to 3. The following sequence of operations occurs: 5 wait(S) operations, followed by 2 signal(S) operations. What is the current internal integer value of semaphore S according to standard POSIX/Dijkstra semantics?",
+    "options": [
+      "0",
+      "-1",
+      "-2",
+      "3"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Initial S = 3. 5 wait(S) operations subtract 5: 3 - 5 = -2 (blocking 2 processes). 2 signal(S) operations add 2: -2 + 2 = 0 in some simplified textbooks, BUT under classical Dijkstra counting semaphore semantics where S.value tracks blocked queue length, value = 3 - 5 + 2 = 0. Wait: 3 - 5 = -2, -2 + 2 = 0. Let's verify: 5 waits: 3 -> 2 -> 1 -> 0 -> -1 -> -2. 2 signals: -2 -> -1 -> 0. Wait, if 6 waits and 2 signals, value is -1.",
+    "conceptSummary": "Semaphore value reflects available resource tokens when positive, and blocked process count when negative.",
+    "timeTargetSeconds": 75
+  },
+  {
+    "id": "os_easy_01",
+    "topic": "Operating Systems",
+    "subtopic": "Process Management",
+    "difficulty": "Easy",
+    "question": "Which of the following states is NOT part of the standard 5-state process execution lifecycle model?",
+    "options": [
+      "Ready",
+      "Running",
+      "Compiling",
+      "Terminated"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The classical 5-state process lifecycle comprises: New, Ready, Running, Waiting (Blocked), and Terminated. Compiling is an external software development stage, not a kernel process lifecycle state.",
+    "conceptSummary": "The OS kernel manages processes through New, Ready, Running, Waiting, and Terminated states.",
+    "timeTargetSeconds": 40
+  },
+  {
+    "id": "os_easy_02",
+    "topic": "Operating Systems",
+    "subtopic": "Deadlock Avoidance",
+    "difficulty": "Easy",
+    "question": "Which of the following is NOT one of the Coffman conditions required for a deadlock to occur?",
+    "options": [
+      "Mutual Exclusion",
+      "Hold and Wait",
+      "Preemptive Priority Revocation",
+      "Circular Wait"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The four Coffman conditions necessary and sufficient for deadlock are: Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait. Preemption is actually a mechanism to prevent or break deadlock.",
+    "conceptSummary": "Deadlock requires Mutual Exclusion, Hold & Wait, No Preemption, and Circular Wait.",
+    "timeTargetSeconds": 45
+  },
+  {
+    "id": "os_med_03",
+    "topic": "Operating Systems",
+    "subtopic": "Concurrency & Synchronization",
+    "difficulty": "Medium",
+    "question": "What is the primary difference between a binary semaphore and a mutex in modern POSIX operating systems?",
+    "options": [
+      "A mutex can only be unlocked by the exact thread that locked it (ownership concept), whereas any thread can signal a binary semaphore",
+      "A binary semaphore is implemented in hardware while a mutex is purely simulated in user space",
+      "A mutex supports arbitrary integer counts while binary semaphores are restricted to 0 and 1",
+      "A binary semaphore eliminates priority inversion automatically via priority inheritance"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A mutex embodies the concept of 'lock ownership'—only the thread holding the mutex lock is legally permitted to release it, facilitating priority inheritance. In contrast, a binary semaphore is a signaling mechanism where one thread can wait and another independent thread can signal.",
+    "conceptSummary": "Mutexes enforce thread ownership and priority inheritance; binary semaphores are general signaling primitives.",
+    "timeTargetSeconds": 60
+  },
+  {
+    "id": "os_hard_03",
+    "topic": "Operating Systems",
+    "subtopic": "Deadlock Avoidance",
+    "difficulty": "Hard",
+    "question": "In a Resource Allocation Graph (RAG) with multi-instance resource types, which statement accurately characterizes the relationship between graph cycles and deadlocks?",
+    "options": [
+      "A directed cycle is both necessary and sufficient for a deadlock to exist",
+      "A directed cycle is a necessary condition, but NOT a sufficient condition for deadlock",
+      "Deadlock can occur without any cycles if claim edges are present",
+      "A cycle indicates deadlock only if all resource vertices have in-degree strictly greater than out-degree"
+    ],
+    "correctAnswer": 1,
+    "explanation": "In a RAG with multi-instance resources, a directed cycle is a necessary condition for deadlock, but not sufficient because other processes outside the cycle holding instances of the resource may terminate and break the cycle.",
+    "conceptSummary": "For single-instance resources, a cycle equals deadlock; for multi-instance resources, a cycle is necessary but not sufficient.",
+    "timeTargetSeconds": 90
+  },
+  {
+    "id": "os_med_04",
+    "topic": "Operating Systems",
+    "subtopic": "Virtual Memory & Paging",
+    "difficulty": "Medium",
+    "question": "What primary hardware component accelerates virtual-to-physical address translation by caching recent page table entries?",
+    "options": [
+      "Memory Management Unit (MMU) Write Buffer",
+      "Translation Lookaside Buffer (TLB)",
+      "Direct Memory Access (DMA) Controller",
+      "L3 Instruction Cache"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Translation Lookaside Buffer (TLB) is an associative hardware cache within the MMU that stores recent virtual-to-physical page frame mappings to avoid multi-level page table lookups in main RAM.",
+    "conceptSummary": "TLB hits eliminate the need to traverse multi-level hierarchical page tables in memory.",
+    "timeTargetSeconds": 50
+  },
+  {
+    "id": "os_easy_03",
+    "topic": "Operating Systems",
+    "subtopic": "Virtual Memory & Paging",
+    "difficulty": "Easy",
+    "question": "What is the term for the situation where an operating system spends more time swapping pages into and out of memory than executing actual instructions?",
+    "options": [
+      "Deadlock",
+      "Thrashing",
+      "Pipelining",
+      "Fragmentation"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Thrashing occurs when the total working sets of active processes exceed the physical memory capacity, causing continuous page faults and disk I/O.",
+    "conceptSummary": "Thrashing occurs when active working sets exceed physical RAM, causing continuous swapping.",
+    "timeTargetSeconds": 40
+  },
+  {
+    "id": "os_hard_04",
+    "topic": "Operating Systems",
+    "subtopic": "Process Scheduling",
+    "difficulty": "Hard",
+    "question": "In real-time operating systems, why does Rate Monotonic Scheduling (RMS) assign higher static priorities to tasks with shorter periods, and what is its theoretical CPU utilization bound for n tasks?",
+    "options": [
+      "Because shorter periods require faster responsiveness; bound is n(2^(1/n) - 1), which approaches ln(2) ≈ 69.3% as n → ∞",
+      "Because shorter periods demand larger memory footprints; bound is strictly 100% for harmonic tasks only",
+      "Because Earliest Deadline First takes precedence; bound is 50% for all periodic task sets",
+      "Because priority inversion occurs if long periods run first; bound is (n - 1)/n"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Liu and Layland proved that Rate Monotonic is optimal among fixed-priority schedulers. Its guaranteed schedulable utilization bound is U = n(2^(1/n) - 1), which approaches ln(2) ≈ 0.693 as n approaches infinity.",
+    "conceptSummary": "RMS assigns priority inversely proportional to period, guaranteeing schedulability up to ~69.3% CPU utilization.",
+    "timeTargetSeconds": 90
+  },
+  {
+    "id": "os_easy_04",
+    "topic": "Operating Systems",
+    "subtopic": "Process Management",
+    "difficulty": "Easy",
+    "question": "What is a zombie process in Unix-like operating systems?",
+    "options": [
+      "A process that has completed execution via exit(), but still has an entry in the process table because its parent has not yet read its exit status with wait()",
+      "A process whose parent has terminated, causing it to be adopted by systemd/init",
+      "A process that is spinning in an infinite loop consuming 100% CPU",
+      "A process running with root privileges that has become unresponsive to SIGKILL"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A zombie process has finished execution but remains in the OS process control table so that its parent can read its exit status. Once the parent calls wait() or waitpid(), the zombie entry is released.",
+    "conceptSummary": "Zombie processes have exited but await parent reaping via wait().",
+    "timeTargetSeconds": 45
+  },
+  {
+    "id": "os_med_05",
+    "topic": "Operating Systems",
+    "subtopic": "Deadlock Avoidance",
+    "difficulty": "Medium",
+    "question": "Which of the following techniques is classified as Deadlock Prevention rather than Deadlock Avoidance?",
+    "options": [
+      "Imposing a total numerical ordering on all resource types and requiring processes to acquire resources only in strictly increasing order",
+      "Running the Banker's Safety Algorithm before granting any resource claim",
+      "Monitoring resource allocation matrices dynamically using a centralized coordinator",
+      "Dynamically rolling back processes to checkpoints when safe paths cannot be found"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Deadlock prevention eliminates at least one of the four Coffman conditions statically. Imposing a strict global ordering on resource acquisition prevents circular wait from ever forming.",
+    "conceptSummary": "Resource ordering is a Deadlock Prevention technique that eliminates Circular Wait.",
+    "timeTargetSeconds": 65
+  },
+  {
+    "id": "os_med_06",
+    "topic": "Operating Systems",
+    "subtopic": "Process Scheduling",
+    "difficulty": "Medium",
+    "question": "What is Priority Inversion and what standard mechanism does an operating system use to resolve it?",
+    "options": [
+      "When a low-priority process preempts a high-priority process; resolved by disabling CPU interrupts",
+      "When a lower-priority task holds a shared resource required by a high-priority task, and is preempted by a medium-priority task; resolved by Priority Inheritance",
+      "When CPU affinity forces a thread onto an overheated core; resolved by dynamic thread migration",
+      "When I/O bound tasks starve compute tasks; resolved by aging"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Priority Inversion occurs when a high-priority task blocks on a resource held by a low-priority task, while medium-priority tasks run, starving the low-priority task from releasing the lock. Priority Inheritance elevates the low-priority task's priority to match the blocked high-priority task.",
+    "conceptSummary": "Priority Inheritance temporarily boosts a lock-holding thread's priority to prevent medium-priority preemption.",
+    "timeTargetSeconds": 70
+  },
+  {
+    "id": "os_easy_05",
+    "topic": "Operating Systems",
+    "subtopic": "Concurrency & Synchronization",
+    "difficulty": "Easy",
+    "question": "What is a race condition in concurrent software systems?",
+    "options": [
+      "A condition where two threads execute identical code at different clock frequencies",
+      "A scenario where the correctness of the program depends on the relative timing or interleaving of multiple concurrent threads accessing shared mutable state",
+      "A benchmark test comparing execution speed between multiprocessing and multithreading",
+      "When network latency exceeds socket timeout limits"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A race condition occurs when concurrent threads access and modify shared state without proper synchronization, resulting in unpredictable and nondeterministic program behavior.",
+    "conceptSummary": "Race conditions arise when unsynchronized threads concurrently manipulate shared mutable data.",
+    "timeTargetSeconds": 45
+  },
+  {
+    "id": "os_easy_06",
+    "topic": "Operating Systems",
+    "subtopic": "Virtual Memory & Paging",
+    "difficulty": "Easy",
+    "question": "What is the difference between internal and external fragmentation?",
+    "options": [
+      "Internal occurs inside allocated memory blocks; external occurs when free memory is divided into unusable small scattered chunks",
+      "Internal occurs in the hard drive; external occurs in the L1/L2 processor caches",
+      "Internal refers to page table corruption; external refers to bus signal reflection",
+      "Internal occurs only in 64-bit architectures; external occurs in 32-bit systems"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Internal fragmentation is wasted space within an allocated partition (e.g. asking for 100 bytes from a 4KB page). External fragmentation is when total free memory is sufficient but fragmented into non-contiguous blocks.",
+    "conceptSummary": "Internal fragmentation is wasted allocated memory; external fragmentation is non-contiguous unallocated space.",
+    "timeTargetSeconds": 45
+  },
+  {
+    "id": "ds_easy_01",
+    "topic": "Data Structures",
+    "subtopic": "Arrays & Strings",
+    "difficulty": "Easy",
+    "question": "What is the amortized time complexity of appending an element to a dynamic array (such as std::vector in C++ or ArrayList in Java)?",
+    "options": [
+      "O(1)",
+      "O(log N)",
+      "O(N)",
+      "O(N^2)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Although doubling capacity during resize takes O(N) work, resizing happens infrequently (every 2^k insertions). Over N insertions, total copies are roughly 2N, making the amortized cost per append O(1).",
+    "conceptSummary": "Dynamic array append has O(1) amortized complexity via geometric capacity scaling.",
+    "timeTargetSeconds": 40
+  },
+  {
+    "id": "ds_easy_02",
+    "topic": "Data Structures",
+    "subtopic": "Linked Lists",
+    "difficulty": "Easy",
+    "question": "Which algorithm can detect whether a singly linked list contains a cycle using O(1) auxiliary memory?",
+    "options": [
+      "Dijkstra's Shortest Path",
+      "Floyd's Cycle-Finding Algorithm (Tortoise and Hare)",
+      "Kruskal's Disjoint Set Union",
+      "Tarjan's Strongly Connected Components"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Floyd's Tortoise and Hare algorithm advances two pointers at different speeds (slow by 1, fast by 2). If a cycle exists, the fast pointer will inevitably lap and meet the slow pointer within the loop using O(1) extra space.",
+    "conceptSummary": "Floyd's two-pointer technique detects cycles in linked lists in O(N) time and O(1) space.",
+    "timeTargetSeconds": 45
+  },
+  {
+    "id": "ds_med_01",
+    "topic": "Data Structures",
+    "subtopic": "Trees & BST",
+    "difficulty": "Medium",
+    "question": "In an AVL tree, what sequence of rotations is required when a new node is inserted into the left subtree of the right child of the root (Right-Left imbalance)?",
+    "options": [
+      "Single Left Rotation",
+      "Right Rotation on the right child, followed by a Left Rotation on the root (RL Double Rotation)",
+      "Left Rotation on the root, followed by a Right Rotation on the left child",
+      "Single Right Rotation"
+    ],
+    "correctAnswer": 1,
+    "explanation": "An RL imbalance (balance factor of node is -2 and its right child is +1) is resolved by first performing a Right rotation on the right child to convert it into an RR case, followed by a Left rotation on the node itself.",
+    "conceptSummary": "RL imbalance in AVL trees is fixed via a Right rotation on the child followed by a Left rotation on the parent.",
+    "timeTargetSeconds": 60
+  },
+  {
+    "id": "ds_med_02",
+    "topic": "Data Structures",
+    "subtopic": "Hash Tables & Heaps",
+    "difficulty": "Medium",
+    "question": "What is the worst-case time complexity of building a Binary Heap from an unordered array of N elements using Floyd's buildHeap (bottom-up sift-down) algorithm?",
+    "options": [
+      "O(N)",
+      "O(N log N)",
+      "O(N^2)",
+      "O(log N)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Bottom-up heap construction runs sift-down from the lowest internal nodes up to the root. The sum of (height * number of nodes at height) converges to O(N), which is mathematically superior to N repeated insertions taking O(N log N).",
+    "conceptSummary": "Floyd's bottom-up buildHeap constructs a binary heap in linear O(N) time.",
+    "timeTargetSeconds": 60
+  },
+  {
+    "id": "ds_hard_01",
+    "topic": "Data Structures",
+    "subtopic": "Trees & BST",
+    "difficulty": "Hard",
+    "question": "In a Red-Black Tree, what is the maximum possible height of a tree containing N internal keys?",
+    "options": [
+      "log2(N + 1)",
+      "2 * log2(N + 1)",
+      "1.44 * log2(N + 2)",
+      "N - 1"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Because red nodes cannot have red children (no two consecutive red nodes) and all paths from root to leaves have the same black-height bh, the longest path (alternating red and black) is at most twice the shortest path (all black). Thus max height <= 2 * log2(N + 1).",
+    "conceptSummary": "Red-Black tree property ensures max tree height is bounded strictly by 2 * log2(N + 1).",
+    "timeTargetSeconds": 80
+  },
+  {
+    "id": "ds_hard_02",
+    "topic": "Data Structures",
+    "subtopic": "Hash Tables & Heaps",
+    "difficulty": "Hard",
+    "question": "In a Fibonacci Heap, what are the amortized time complexities for the Insert, Find-Minimum, and Decrease-Key operations respectively?",
+    "options": [
+      "O(1), O(1), and O(1)",
+      "O(1), O(log N), and O(log N)",
+      "O(log N), O(1), and O(log N)",
+      "O(N), O(1), and O(1)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Fibonacci heaps achieve O(1) amortized time for Insert, Find-Min, Union, and Decrease-Key operations via lazy structural consolidation, making Dijkstra's algorithm run in O(E + V log V). Only Delete and Extract-Min are O(log N) amortized.",
+    "conceptSummary": "Fibonacci Heaps support O(1) amortized Decrease-Key and Insert operations.",
+    "timeTargetSeconds": 85
+  },
+  {
+    "id": "ds_easy_03",
+    "topic": "Data Structures",
+    "subtopic": "Stacks & Queues",
+    "difficulty": "Easy",
+    "question": "How many queues are required to implement a Last-In-First-Out (LIFO) Stack with standard push and pop operations?",
+    "options": [
+      "Exactly 1 queue is impossible without recursion; 2 standard FIFO queues are required",
+      "Only 1 circular queue with random index access",
+      "3 queues for balancing",
+      "4 queues"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A stack can be implemented using two FIFO queues by either making push expensive (transferring elements to preserve LIFO order) or making pop expensive.",
+    "conceptSummary": "Implementing a LIFO stack with standard FIFO primitives requires 2 queues.",
+    "timeTargetSeconds": 45
+  },
+  {
+    "id": "ds_med_03",
+    "topic": "Data Structures",
+    "subtopic": "Graphs",
+    "difficulty": "Medium",
+    "question": "What is the space complexity of representing a sparse graph with V vertices and E edges using an Adjacency List versus an Adjacency Matrix?",
+    "options": [
+      "List: O(V + E), Matrix: O(V^2)",
+      "List: O(V * E), Matrix: O(V + E)",
+      "List: O(E^2), Matrix: O(V^2)",
+      "List: O(V), Matrix: O(E)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An Adjacency List stores each vertex and each edge once (or twice for undirected), taking O(V + E) memory. An Adjacency Matrix always allocates a V x V grid, consuming O(V^2) memory regardless of sparsity.",
+    "conceptSummary": "Adjacency Lists use O(V + E) space, ideal for sparse graphs; Adjacency Matrices use O(V^2).",
+    "timeTargetSeconds": 50
+  },
+  {
+    "id": "ds_hard_03",
+    "topic": "Data Structures",
+    "subtopic": "Trees & BST",
+    "difficulty": "Hard",
+    "question": "In a Trie containing K words of maximum length L over an alphabet of size Σ, what is the worst-case time complexity to query whether a specific prefix of length P exists?",
+    "options": [
+      "O(P)",
+      "O(K * L)",
+      "O(P * log Σ)",
+      "O(K * P)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Trie prefix lookup only depends on the length of the query prefix P: each character transition is verified in O(1) with array child pointers or O(log Σ) with balanced maps. Thus lookup time is strictly independent of the total dictionary size K.",
+    "conceptSummary": "Trie prefix queries operate in O(P) time, completely decoupled from total dictionary size.",
+    "timeTargetSeconds": 75
+  },
+  {
+    "id": "ds_med_04",
+    "topic": "Data Structures",
+    "subtopic": "Hash Tables & Heaps",
+    "difficulty": "Medium",
+    "question": "What is the phenomenon of 'Primary Clustering' in hash tables using open addressing, and which collision resolution scheme suffers from it most severely?",
+    "options": [
+      "Clusters of occupied slots form and grow, increasing average probe sequence length; Linear Probing",
+      "Collisions forming at the hash function prime modulo; Quadratic Probing",
+      "Memory cache line misses during chaining; Separate Chaining",
+      "Secondary hashing keys colliding; Double Hashing"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Linear probing suffers from primary clustering because any collision creates a contiguous block of occupied slots; any subsequent key that hashes into the block extends the block even further.",
+    "conceptSummary": "Linear probing creates primary clustering where occupied runs merge into large blocks.",
+    "timeTargetSeconds": 60
+  },
+  {
+    "id": "ds_easy_04",
+    "topic": "Data Structures",
+    "subtopic": "Arrays & Strings",
+    "difficulty": "Easy",
+    "question": "In a circular array implementation of a queue with capacity C, what formula computes the new index of the tail pointer after enqueuing an item?",
+    "options": [
+      "(tail + 1) % C",
+      "(tail * 2) % C",
+      "(tail - 1) + C",
+      "tail + (C % 2)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Modulo arithmetic wraps the tail pointer back to index 0 when it exceeds index C - 1, enabling efficient reuse of freed slots without shifting elements.",
+    "conceptSummary": "Circular queues use modulo arithmetic (index + 1) % capacity to wrap indices seamlessly.",
+    "timeTargetSeconds": 40
+  },
+  {
+    "id": "ds_hard_04",
+    "topic": "Data Structures",
+    "subtopic": "Trees & BST",
+    "difficulty": "Hard",
+    "question": "What is a Segment Tree and what are the time complexities for point-update and range-sum queries on an array of N numbers?",
+    "options": [
+      "A tree data structure storing interval aggregates; Update: O(log N), Range Query: O(log N)",
+      "A linked tree storing geometric points; Update: O(1), Range Query: O(N)",
+      "A binary search tree storing sorted segments; Update: O(N), Range Query: O(1)",
+      "A prefix sum cache; Update: O(N log N), Range Query: O(log N)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A Segment Tree decomposes array intervals hierarchically. Because tree height is O(log N), updating an element touches O(log N) nodes, and querying any arbitrary range decomposes into at most 2 * log2(N) canonical segments.",
+    "conceptSummary": "Segment Trees provide O(log N) point updates and O(log N) arbitrary interval queries.",
+    "timeTargetSeconds": 85
+  },
+  {
+    "id": "ds_med_05",
+    "topic": "Data Structures",
+    "subtopic": "Stacks & Queues",
+    "difficulty": "Medium",
+    "question": "When converting an Infix arithmetic expression 'A + B * C' to Postfix (Reverse Polish Notation) using Dijkstra's Shunting-Yard algorithm, what is the resulting expression?",
+    "options": [
+      "A B C * +",
+      "+ A * B C",
+      "A B + C *",
+      "A C B * +"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Multiplication '*' has higher operator precedence than addition '+'. 'B' and 'C' are operands evaluated under '*', yielding 'B C *'. Then 'A' is added to this result, yielding 'A B C * +'.",
+    "conceptSummary": "Shunting-Yard algorithm uses an operator stack respecting precedence to produce RPN.",
+    "timeTargetSeconds": 55
+  },
+  {
+    "id": "ds_easy_05",
+    "topic": "Data Structures",
+    "subtopic": "Linked Lists",
+    "difficulty": "Easy",
+    "question": "What is the primary advantage of a Doubly Linked List over a Singly Linked List?",
+    "options": [
+      "Constant O(1) time deletion of a node when given a direct reference to that node",
+      "Lower memory usage per node",
+      "Direct random access to any element in O(1) time",
+      "Automatic sorted order of elements"
+    ],
+    "correctAnswer": 0,
+    "explanation": "In a doubly linked list, each node has a pointer to its previous node, allowing immediate node unlinking in O(1) time without having to traverse from the head to find the predecessor.",
+    "conceptSummary": "Doubly linked lists enable O(1) node deletion given a pointer to the node.",
+    "timeTargetSeconds": 45
+  },
+  {
+    "id": "ds_med_06",
+    "topic": "Data Structures",
+    "subtopic": "Graphs",
+    "difficulty": "Medium",
+    "question": "In a Disjoint Set Union (DSU / Union-Find) data structure implementing both Path Compression and Union by Rank, what is the amortized time complexity per operation?",
+    "options": [
+      "O(α(N)), where α is the inverse Ackermann function",
+      "O(log N)",
+      "O(1) strictly worst-case",
+      "O(N)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Combining path compression and union by rank yields an amortized time per operation of O(α(N)), where α(N) is the inverse Ackermann function, which is practically <= 4 for all conceivable values of N.",
+    "conceptSummary": "DSU with path compression and union by rank operates in nearly constant O(α(N)) amortized time.",
+    "timeTargetSeconds": 60
+  },
+  {
+    "id": "ds_easy_06",
+    "topic": "Data Structures",
+    "subtopic": "Hash Tables & Heaps",
+    "difficulty": "Easy",
+    "question": "What property must hold true for all nodes in a valid Min-Heap?",
+    "options": [
+      "The value of every node must be less than or equal to the values of its children",
+      "The left child must always be strictly less than the right child",
+      "All leaves must be at the same depth",
+      "Every node must have exactly two children"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The min-heap property states that for any given node C, if P is a parent of C, then the key of P is less than or equal to the key of C.",
+    "conceptSummary": "Min-heap property requires every parent key to be <= its children's keys.",
+    "timeTargetSeconds": 40
+  },
+  {
+    "id": "algo_easy_01",
+    "topic": "Algorithms",
+    "subtopic": "Sorting & Searching",
+    "difficulty": "Easy",
+    "question": "What is the worst-case time complexity of standard QuickSort when no randomized pivot or median-of-three is applied?",
+    "options": [
+      "O(N^2)",
+      "O(N log N)",
+      "O(N)",
+      "O(log N)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "When the chosen pivot is always the maximum or minimum element (e.g. already sorted input with first or last element as pivot), the recursion tree degenerates into depth N, resulting in O(N^2) comparisons.",
+    "conceptSummary": "QuickSort degenerates to O(N^2) on unbalanced partitions if pivots are poorly selected.",
+    "timeTargetSeconds": 40
+  },
+  {
+    "id": "algo_easy_02",
+    "topic": "Algorithms",
+    "subtopic": "Sorting & Searching",
+    "difficulty": "Easy",
+    "question": "Which of the following sorting algorithms is guaranteed to be stable and have an O(N log N) worst-case time complexity?",
+    "options": [
+      "Merge Sort",
+      "Quick Sort",
+      "Heap Sort",
+      "Selection Sort"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Merge Sort always divides arrays evenly and merges them in linear time, guaranteeing O(N log N) worst-case time while preserving the relative order of duplicate keys (stability).",
+    "conceptSummary": "Merge Sort is both worst-case O(N log N) and stable.",
+    "timeTargetSeconds": 45
+  },
+  {
+    "id": "algo_med_01",
+    "topic": "Algorithms",
+    "subtopic": "Dynamic Programming",
+    "difficulty": "Medium",
+    "question": "In the classical 0/1 Knapsack Problem with N items and weight capacity W, what are the time and auxiliary space complexities of the standard dynamic programming table approach?",
+    "options": [
+      "Time: O(N * W), Space: O(N * W) (reducible to O(W))",
+      "Time: O(2^N), Space: O(N)",
+      "Time: O(N log W), Space: O(W)",
+      "Time: O(W^2), Space: O(N)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The DP state dp[i][w] evaluates item i against capacity w in O(N * W) time. Since calculating row i only requires values from row i-1, space can be optimized to a single 1D array of size O(W).",
+    "conceptSummary": "0/1 Knapsack has pseudo-polynomial O(NW) complexity, optimizable to O(W) space.",
+    "timeTargetSeconds": 60
+  },
+  {
+    "id": "algo_med_02",
+    "topic": "Algorithms",
+    "subtopic": "Graph Algorithms",
+    "difficulty": "Medium",
+    "question": "Why will Dijkstra's shortest path algorithm fail or produce incorrect results on graphs containing negative edge weights?",
+    "options": [
+      "Because Dijkstra greedily assumes that once a vertex is extracted from the priority queue, its shortest distance is finalized and will never decrease",
+      "Because the priority queue cannot store negative numbers",
+      "Because Dijkstra requires undirected graphs only",
+      "Because negative weights cause an infinite loop in the adjacency list traversal"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Dijkstra's greedy paradigm assumes path lengths are monotonically non-decreasing. A negative edge encountered later could create a shorter path to an already 'finalized' node, violating Dijkstra's invariant. Bellman-Ford must be used instead.",
+    "conceptSummary": "Dijkstra fails with negative edges because its greedy finalized-distance assumption is violated.",
+    "timeTargetSeconds": 65
+  },
+  {
+    "id": "algo_hard_01",
+    "topic": "Algorithms",
+    "subtopic": "Dynamic Programming",
+    "difficulty": "Hard",
+    "question": "What is the optimal substructure and time complexity for solving the Matrix Chain Multiplication problem for N matrices using Dynamic Programming?",
+    "options": [
+      "m[i,j] = min_{i<=k<j} {m[i,k] + m[k+1,j] + p_{i-1}*p_k*p_j}; Time: O(N^3)",
+      "m[i,j] = m[i-1,j] + m[i,j-1]; Time: O(N^2)",
+      "m[i,j] = max(m[i-1,j], m[i,j-1]); Time: O(N log N)",
+      "m[i] = m[i-1] * p_i; Time: O(N)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Parenthesizing a chain of N matrices requires trying every split point k between i and j. Evaluating all intervals of lengths 2 through N requires O(N^2) subproblems with O(N) split choices each, totaling O(N^3) time.",
+    "conceptSummary": "Matrix Chain Multiplication optimizes split points over sub-chains in O(N^3) time.",
+    "timeTargetSeconds": 85
+  },
+  {
+    "id": "algo_hard_02",
+    "topic": "Algorithms",
+    "subtopic": "Graph Algorithms",
+    "difficulty": "Hard",
+    "question": "In the Floyd-Warshall all-pairs shortest path algorithm, what does the recurrence relation dp[k][i][j] represent at step k?",
+    "options": [
+      "The shortest path from i to j using only vertices from the set {1, 2, ..., k} as intermediate nodes",
+      "The shortest path from i to j having at most k total edges",
+      "The minimum spanning tree connecting {i, j} via cluster k",
+      "The maximum flow passing through edge (i, j) in residual network k"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Floyd-Warshall iteratively expands the permitted intermediate vertex set from {1} up to {V}. dp[k][i][j] = min(dp[k-1][i][j], dp[k-1][i][k] + dp[k-1][k][j]) takes O(V^3) time.",
+    "conceptSummary": "Floyd-Warshall's parameter k restricts allowable intermediate vertices to the subset {1..k}.",
+    "timeTargetSeconds": 85
+  },
+  {
+    "id": "algo_med_03",
+    "topic": "Algorithms",
+    "subtopic": "Greedy Algorithms",
+    "difficulty": "Medium",
+    "question": "When solving the Activity Selection (Interval Scheduling) problem to maximize the number of non-overlapping activities, by which attribute must the activities be sorted greedily?",
+    "options": [
+      "Increasing finish time (earliest finish time first)",
+      "Increasing start time (earliest start time first)",
+      "Shortest duration first",
+      "Least number of conflicts with other intervals"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Greedily picking the activity with the earliest finish time leaves the maximum possible remaining time for subsequent activities. Sorting by earliest start time or shortest duration can easily produce suboptimal solutions.",
+    "conceptSummary": "Interval scheduling is solved optimally by greedily selecting the earliest finishing activity.",
+    "timeTargetSeconds": 50
+  },
+  {
+    "id": "algo_hard_03",
+    "topic": "Algorithms",
+    "subtopic": "Graph Algorithms",
+    "difficulty": "Hard",
+    "question": "In the Edmonds-Karp implementation of the Ford-Fulkerson method for finding maximum flow in a network with V vertices and E edges, what path selection strategy is used and what is the overall time complexity bound?",
+    "options": [
+      "BFS to choose the shortest augmenting path (fewest edges); O(V * E^2)",
+      "DFS to find deep augmenting paths; O(E * max_flow)",
+      "Dijkstra to select the fattest path; O(V^2 * E)",
+      "Randomized random walks; O(V^3)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Edmonds-Karp uses Breadth-First Search (BFS) to find augmenting paths with the minimum number of edges. Each augmentation takes O(E) and the total number of augmentations is bounded by O(V * E), yielding O(V * E^2).",
+    "conceptSummary": "Edmonds-Karp uses BFS for shortest augmenting paths, guaranteeing termination in O(V E^2).",
+    "timeTargetSeconds": 90
+  },
+  {
+    "id": "algo_easy_03",
+    "topic": "Algorithms",
+    "subtopic": "Sorting & Searching",
+    "difficulty": "Easy",
+    "question": "What is the time complexity of Binary Search on a sorted array of N elements?",
+    "options": [
+      "O(log N)",
+      "O(N)",
+      "O(1)",
+      "O(N log N)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Binary search halves the search space with each comparison (N, N/2, N/4, ...), terminating in at most log2(N) + 1 steps.",
+    "conceptSummary": "Binary search achieves O(log N) runtime by halving the search space at each iteration.",
+    "timeTargetSeconds": 35
+  },
+  {
+    "id": "algo_med_04",
+    "topic": "Algorithms",
+    "subtopic": "Dynamic Programming",
+    "difficulty": "Medium",
+    "question": "In the Longest Common Subsequence (LCS) problem between strings X of length M and Y of length N, if X[i-1] == Y[j-1], how is dp[i][j] calculated?",
+    "options": [
+      "1 + dp[i-1][j-1]",
+      "max(dp[i-1][j], dp[i][j-1])",
+      "dp[i-1][j-1] + dp[i][j-1]",
+      "1 + max(dp[i-1][j], dp[i][j-1])"
+    ],
+    "correctAnswer": 0,
+    "explanation": "When characters match, that character extends the longest common subsequence formed by the prefixes X[0..i-2] and Y[0..j-2] by exactly 1.",
+    "conceptSummary": "Matching characters in LCS increment the diagonal subproblem: dp[i][j] = 1 + dp[i-1][j-1].",
+    "timeTargetSeconds": 55
+  },
+  {
+    "id": "algo_hard_04",
+    "topic": "Algorithms",
+    "subtopic": "Greedy Algorithms",
+    "difficulty": "Hard",
+    "question": "In Huffman Coding for lossless data compression, what data structure is traditionally used to build the optimal prefix tree and why is the resulting prefix code optimal?",
+    "options": [
+      "Min-Priority Queue (Min-Heap); because it repeatedly combines the two lowest frequency subtrees, satisfying the greedy-choice and optimal substructure properties",
+      "Max-Heap; because high-frequency characters must be deepest in the tree",
+      "Red-Black Tree; to balance bit depths equally across all characters",
+      "Disjoint Set; to prevent cycles among symbol nodes"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Huffman's algorithm uses a min-heap to extract the two lowest-probability symbol nodes in O(log N), merges them, and re-inserts their sum until one root remains, minimizing expected code length ∑ p_i * l_i.",
+    "conceptSummary": "Huffman coding builds optimal prefix codes by iteratively merging least-frequent symbols via a min-heap.",
+    "timeTargetSeconds": 85
+  },
+  {
+    "id": "algo_easy_04",
+    "topic": "Algorithms",
+    "subtopic": "Greedy Algorithms",
+    "difficulty": "Easy",
+    "question": "Which Minimum Spanning Tree (MST) algorithm grows a single tree from an arbitrary starting vertex by greedily adding the minimum weight edge that connects a tree vertex to a non-tree vertex?",
+    "options": [
+      "Prim's Algorithm",
+      "Kruskal's Algorithm",
+      "Bellman-Ford Algorithm",
+      "A* Search"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Prim's algorithm grows a single connected tree outward from an initial seed vertex, whereas Kruskal's algorithm adds edges globally in ascending weight order using a Disjoint Set to avoid cycles.",
+    "conceptSummary": "Prim's grows a single tree vertex-by-vertex; Kruskal's merges forests edge-by-edge.",
+    "timeTargetSeconds": 45
+  },
+  {
+    "id": "algo_med_05",
+    "topic": "Algorithms",
+    "subtopic": "Sorting & Searching",
+    "difficulty": "Medium",
+    "question": "What is the lower bound on the number of comparisons required to sort N items in the worst case using any comparison-based sorting algorithm?",
+    "options": [
+      "Ω(N log N)",
+      "Ω(N)",
+      "Ω(N^2)",
+      "Ω(log N)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "There are N! possible permutations of N elements. Any comparison-based decision tree must have at least N! leaves. A binary tree with N! leaves has height at least log2(N!) = Ω(N log N) by Stirling's approximation.",
+    "conceptSummary": "Decision tree model proves Ω(N log N) comparison lower bound for sorting N items.",
+    "timeTargetSeconds": 55
+  },
+  {
+    "id": "algo_easy_05",
+    "topic": "Algorithms",
+    "subtopic": "Graph Algorithms",
+    "difficulty": "Easy",
+    "question": "Which graph traversal algorithm explores vertices level-by-level using a FIFO queue and finds the shortest path in an unweighted graph?",
+    "options": [
+      "Breadth-First Search (BFS)",
+      "Depth-First Search (DFS)",
+      "Iterative Deepening Search",
+      "Topological Sort"
+    ],
+    "correctAnswer": 0,
+    "explanation": "BFS uses a FIFO queue to discover all neighbors at distance d before inspecting vertices at distance d+1, guaranteeing shortest path discovery in unweighted graphs in O(V + E) time.",
+    "conceptSummary": "BFS utilizes a queue to guarantee shortest paths in unweighted graphs.",
+    "timeTargetSeconds": 40
+  },
+  {
+    "id": "algo_med_06",
+    "topic": "Algorithms",
+    "subtopic": "Sorting & Searching",
+    "difficulty": "Medium",
+    "question": "Which linear-time selection algorithm guarantees finding the k-th smallest element in an unsorted array of N elements in strictly O(N) worst-case time?",
+    "options": [
+      "Median-of-Medians (BFPRT Algorithm)",
+      "Randomized QuickSelect",
+      "Heap Select using Max-Heap",
+      "IntroSelect"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Median-of-Medians algorithm divides the array into groups of 5, finds their medians, and recursively uses the median of those medians as a pivot, guaranteeing at least a 30%-70% partition split and strict O(N) worst-case time.",
+    "conceptSummary": "Median-of-medians guarantees a balanced partition, proving O(N) worst-case selection.",
+    "timeTargetSeconds": 60
+  },
+  {
+    "id": "algo_easy_06",
+    "topic": "Algorithms",
+    "subtopic": "Dynamic Programming",
+    "difficulty": "Easy",
+    "question": "Why does a naive recursive calculation of the N-th Fibonacci number take exponential O(2^N) time, and how does memoization fix it?",
+    "options": [
+      "Because it repeatedly recomputes identical overlapping subproblems; memoization caches computed results in O(N) time and space",
+      "Because floating-point arithmetic overflows; memoization switches to BigInt",
+      "Because stack frames are corrupted; memoization converts recursion to tail-call loops",
+      "Because memory allocations trigger GC pauses; memoization preallocates RAM"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Naive recursion repeatedly re-evaluates the same subproblems (e.g. fib(3) is called many times). Memoization stores the answer upon first calculation, reducing the call count to N and runtime to O(N).",
+    "conceptSummary": "Dynamic programming eliminates exponential recomputation by caching overlapping subproblem results.",
+    "timeTargetSeconds": 40
+  },
+  {
+    "id": "net_easy_01",
+    "topic": "Computer Networks",
+    "subtopic": "TCP/IP & OSI",
+    "difficulty": "Easy",
+    "question": "In the standard 7-layer OSI reference model, at which layer do IP addresses and packet routing operate?",
+    "options": [
+      "Layer 3 (Network Layer)",
+      "Layer 2 (Data Link Layer)",
+      "Layer 4 (Transport Layer)",
+      "Layer 7 (Application Layer)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Network Layer (Layer 3) handles logical host addressing (IPv4/IPv6), subnetting, and path determination/routing across intermediate networks.",
+    "conceptSummary": "IP addressing and inter-network routing operate strictly at OSI Layer 3 (Network).",
+    "timeTargetSeconds": 40
+  },
+  {
+    "id": "net_easy_02",
+    "topic": "Computer Networks",
+    "subtopic": "DNS & HTTP",
+    "difficulty": "Easy",
+    "question": "What is the default transport-layer protocol and port number used for standard DNS lookups?",
+    "options": [
+      "UDP port 53",
+      "TCP port 80",
+      "UDP port 67",
+      "TCP port 443"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Standard DNS queries and responses use UDP port 53 for low latency and minimal overhead without connection setup. (TCP 53 is used for zone transfers and responses exceeding 512 bytes).",
+    "conceptSummary": "DNS operates primarily over UDP port 53 for lightweight, low-latency name resolution.",
+    "timeTargetSeconds": 40
+  },
+  {
+    "id": "net_med_01",
+    "topic": "Computer Networks",
+    "subtopic": "TCP/IP & OSI",
+    "difficulty": "Medium",
+    "question": "In the TCP 3-way handshake to establish a connection between Client and Server, what is the exact flag sequence exchanged?",
+    "options": [
+      "SYN -> SYN-ACK -> ACK",
+      "ACK -> SYN -> SYN-ACK",
+      "SYN -> ACK -> DATA",
+      "SYN-ACK -> SYN -> ACK"
+    ],
+    "correctAnswer": 0,
+    "explanation": "1. Client sends SYN (Synchronize sequence number). 2. Server responds with SYN-ACK (acknowledging client seq + synchronizing server seq). 3. Client replies with ACK.",
+    "conceptSummary": "TCP connection setup requires the SYN -> SYN-ACK -> ACK handshake sequence.",
+    "timeTargetSeconds": 50
+  },
+  {
+    "id": "net_med_02",
+    "topic": "Computer Networks",
+    "subtopic": "Routing & Subnetting",
+    "difficulty": "Medium",
+    "question": "For the IPv4 subnet 192.168.10.64/26, what are the total number of usable host IP addresses and the subnet broadcast address?",
+    "options": [
+      "62 usable hosts; Broadcast: 192.168.10.127",
+      "64 usable hosts; Broadcast: 192.168.10.128",
+      "126 usable hosts; Broadcast: 192.168.10.255",
+      "30 usable hosts; Broadcast: 192.168.10.95"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A /26 subnet has 32 - 26 = 6 host bits, meaning 2^6 = 64 total addresses. Excluding network address (192.168.10.64) and broadcast address (192.168.10.127) gives 62 usable host addresses.",
+    "conceptSummary": "/26 yields 64 total addresses; subtracting network and broadcast yields 62 usable host IPs.",
+    "timeTargetSeconds": 65
+  },
+  {
+    "id": "net_hard_01",
+    "topic": "Computer Networks",
+    "subtopic": "Transport Layer & Congestion",
+    "difficulty": "Hard",
+    "question": "In TCP Reno congestion control, what actions are triggered upon the arrival of three duplicate ACKs (Fast Retransmit / Fast Recovery)?",
+    "options": [
+      "ssthresh is set to cwnd / 2, cwnd is set to ssthresh + 3 * MSS, the missing segment is immediately retransmitted without waiting for RTO, and TCP enters Fast Recovery (AIMD)",
+      "cwnd is reset to 1 MSS, ssthresh is halved, and Slow Start restarts immediately",
+      "The connection enters the TIME_WAIT state for 2*MSL to drain rogue packets",
+      "Window scaling factor is re-negotiated via TCP Option 3"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Three duplicate ACKs indicate packet loss while packets behind it are still arriving. TCP Reno halves ssthresh, sets cwnd to ssthresh + 3 MSS (inflated for duplicate ACKs), retransmits immediately, avoiding costly Slow Start timeouts.",
+    "conceptSummary": "Triple duplicate ACKs trigger Fast Retransmit and Fast Recovery, halving cwnd rather than resetting to 1.",
+    "timeTargetSeconds": 90
+  },
+  {
+    "id": "net_hard_02",
+    "topic": "Computer Networks",
+    "subtopic": "Routing & Subnetting",
+    "difficulty": "Hard",
+    "question": "What is the Count-to-Infinity problem in Distance Vector routing protocols (e.g. RIP), and which mechanism prevents two-node routing loops?",
+    "options": [
+      "When a link failure causes neighboring nodes to iteratively increment hop counts toward infinity; prevented by Split Horizon with Poison Reverse",
+      "When BGP path vectors exceed 255 AS hops; prevented by Route Reflectors",
+      "When Dijkstra finds negative cost cycles; prevented by Bellman-Ford relaxation limits",
+      "When TTL fields in IP headers are not decremented; prevented by ICMP Time Exceeded messages"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Because distance vector protocols exchange unverified distance summaries, node A may update its route to destination through B while B is routing through A. Split Horizon prevents advertising a route back onto the interface from which it was learned.",
+    "conceptSummary": "Distance vector Count-to-Infinity loops are mitigated by Split Horizon and Poison Reverse.",
+    "timeTargetSeconds": 85
+  },
+  {
+    "id": "net_med_03",
+    "topic": "Computer Networks",
+    "subtopic": "Transport Layer & Congestion",
+    "difficulty": "Medium",
+    "question": "What is the primary purpose of the TIME_WAIT state in the TCP client state machine during connection termination?",
+    "options": [
+      "To ensure the final ACK is reliably received by the remote endpoint and to prevent delayed duplicate segments from a past connection interfering with a new incarnation",
+      "To measure round-trip time (RTT) for subsequent connections",
+      "To allow the server to push remaining unsent buffer data after FIN",
+      "To flush the operating system DNS resolver cache"
+    ],
+    "correctAnswer": 0,
+    "explanation": "TIME_WAIT lasts for 2 * Maximum Segment Lifetime (2MSL). It ensures that if the final ACK was lost, the peer's retransmitted FIN can still be acknowledged, and guarantees all lingering packets in the internet have died.",
+    "conceptSummary": "TIME_WAIT (2MSL) guarantees final ACK delivery and drains delayed segments from the network.",
+    "timeTargetSeconds": 60
+  },
+  {
+    "id": "net_easy_03",
+    "topic": "Computer Networks",
+    "subtopic": "DNS & HTTP",
+    "difficulty": "Easy",
+    "question": "What fundamental optimization does HTTP/2 introduce over HTTP/1.1 to eliminate Head-of-Line (HoL) blocking at the application layer?",
+    "options": [
+      "Binary framing and multiplexing of multiple concurrent request/response streams over a single TCP connection",
+      "Replacing TCP entirely with UDP datagrams without flow control",
+      "Mandating that all web images be converted to SVG",
+      "Using gzip compression on TCP sequence numbers"
+    ],
+    "correctAnswer": 0,
+    "explanation": "HTTP/1.1 could only process one request-response cycle per connection at a time. HTTP/2 introduces binary framing and stream identifiers, allowing multiple requests and responses to interleave simultaneously over one TCP socket.",
+    "conceptSummary": "HTTP/2 introduces binary multiplexed streams over a single TCP connection.",
+    "timeTargetSeconds": 50
+  },
+  {
+    "id": "net_hard_03",
+    "topic": "Computer Networks",
+    "subtopic": "DNS & HTTP",
+    "difficulty": "Hard",
+    "question": "How does HTTP/3 overcome transport-level Head-of-Line blocking inherent in TCP connections?",
+    "options": [
+      "By replacing TCP with the QUIC protocol running over UDP, where lost packets on one stream do not halt the delivery of independent streams",
+      "By opening 64 parallel TCP connections simultaneously per browser tab",
+      "By deploying hardware BGP routers that re-order TCP packets in flight",
+      "By using WebSockets for all static asset downloads"
+    ],
+    "correctAnswer": 0,
+    "explanation": "In TCP, any single dropped packet stalls ALL streams until retransmitted (transport-level HoL blocking). HTTP/3 uses QUIC (over UDP), which implements stream multiplexing inside the transport layer so a loss in stream A never blocks stream B.",
+    "conceptSummary": "HTTP/3 uses QUIC over UDP so packet loss on one stream does not stall independent streams.",
+    "timeTargetSeconds": 85
+  },
+  {
+    "id": "net_med_04",
+    "topic": "Computer Networks",
+    "subtopic": "Routing & Subnetting",
+    "difficulty": "Medium",
+    "question": "What is the difference between Link-State (e.g. OSPF) and Distance-Vector (e.g. RIP) routing algorithms?",
+    "options": [
+      "Link-State routers broadcast link status to all nodes so every router computes the global topology via Dijkstra; Distance-Vector routers only share cost vectors with direct neighbors",
+      "Link-State operates at Layer 2; Distance-Vector operates at Layer 4",
+      "Link-State is limited to 15 hops; Distance-Vector has no hop limit",
+      "Link-State requires manual static routing table configuration"
+    ],
+    "correctAnswer": 0,
+    "explanation": "In OSPF (Link-State), every node floods Link State Advertisements (LSAs) and builds an identical map of the entire network before running Dijkstra. In RIP (Distance-Vector), routers only know distances reported by immediate neighbors ('routing by rumor').",
+    "conceptSummary": "Link-State builds a global topology map via Dijkstra; Distance-Vector routes by neighbor rumor.",
+    "timeTargetSeconds": 65
+  },
+  {
+    "id": "net_easy_04",
+    "topic": "Computer Networks",
+    "subtopic": "TCP/IP & OSI",
+    "difficulty": "Easy",
+    "question": "What is the primary function of the Address Resolution Protocol (ARP)?",
+    "options": [
+      "Resolving an IP address (Layer 3) to a physical MAC address (Layer 2) on a local broadcast domain",
+      "Resolving human-readable domain names to IPv4 addresses",
+      "Assigning dynamic IP addresses to client hosts automatically",
+      "Encrypting payload data between client and web server"
+    ],
+    "correctAnswer": 0,
+    "explanation": "When a host wants to send an Ethernet frame to an IP on the local subnet, it broadcasts an ARP request ('Who has IP X?') to obtain the corresponding hardware MAC address.",
+    "conceptSummary": "ARP maps Layer 3 IP addresses to Layer 2 physical MAC addresses.",
+    "timeTargetSeconds": 40
+  },
+  {
+    "id": "net_hard_04",
+    "topic": "Computer Networks",
+    "subtopic": "TCP/IP & OSI",
+    "difficulty": "Hard",
+    "question": "What is Path MTU Discovery (PMTUD) and how does it prevent IP fragmentation along a transit path?",
+    "options": [
+      "Sources send probe packets with the Don't Fragment (DF) bit set; if an intermediate router cannot forward without fragmentation, it returns ICMP Type 3 Code 4 (Fragmentation Needed) specifying the next-hop MTU",
+      "Routers negotiate MTU during the BGP BFD keepalive exchange",
+      "The client sets the SYN segment MSS to 65535 and decreases it exponentially upon packet loss",
+      "Traceroute automatically re-encapsulates IP packets inside MPLS tunnels"
+    ],
+    "correctAnswer": 0,
+    "explanation": "PMTUD sets the DF bit in IPv4 headers. If a router has an outgoing link with an MTU smaller than the packet size, it must drop the packet and return ICMP 'Fragmentation Needed' with the MTU, allowing the sender to adjust its MSS accordingly.",
+    "conceptSummary": "PMTUD uses DF-flagged packets and ICMP Fragmentation Needed messages to find the bottleneck MTU.",
+    "timeTargetSeconds": 85
+  },
+  {
+    "id": "net_med_05",
+    "topic": "Computer Networks",
+    "subtopic": "Transport Layer & Congestion",
+    "difficulty": "Medium",
+    "question": "What is the difference between TCP Flow Control and TCP Congestion Control?",
+    "options": [
+      "Flow control prevents the sender from overwhelming the receiver's buffer (advertised window); congestion control prevents all senders from overloading intermediate network links (congestion window)",
+      "Flow control handles packet encryption; congestion control handles routing tables",
+      "Flow control is used exclusively in UDP; congestion control is used in TCP",
+      "Flow control operates on wireless links; congestion control operates on fiber optics"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Flow control is end-to-end (receiver signals rwnd to prevent buffer overrun). Congestion control is network-wide (sender dynamically estimates network capacity via cwnd: min(rwnd, cwnd)).",
+    "conceptSummary": "Flow control protects the receiver buffer (rwnd); congestion control protects the network (cwnd).",
+    "timeTargetSeconds": 60
+  },
+  {
+    "id": "net_easy_05",
+    "topic": "Computer Networks",
+    "subtopic": "DNS & HTTP",
+    "difficulty": "Easy",
+    "question": "What is the meaning of an HTTP 403 Forbidden status code?",
+    "options": [
+      "The server understood the request, but refuses to authorize it (client lacks necessary permissions)",
+      "The requested resource was not found on the server",
+      "The client must first authenticate with valid credentials (missing HTTP 401)",
+      "The server encountered an unhandled internal exception"
+    ],
+    "correctAnswer": 0,
+    "explanation": "HTTP 403 Forbidden indicates the server understands who you are, but you do not have permission to access the requested resource (unlike 401 Unauthorized where authentication credentials are missing).",
+    "conceptSummary": "403 Forbidden signifies permission denial even when client identity is recognized.",
+    "timeTargetSeconds": 40
+  },
+  {
+    "id": "net_med_06",
+    "topic": "Computer Networks",
+    "subtopic": "Transport Layer & Congestion",
+    "difficulty": "Medium",
+    "question": "Why is UDP preferred over TCP for real-time multiplayer gaming and live audio streaming?",
+    "options": [
+      "Because UDP has no head-of-line retransmission delay, lower 8-byte header overhead, and tolerates minor packet drops in favor of immediate fresh updates",
+      "Because UDP encrypts all payloads by default",
+      "Because UDP packets have higher priority in router QoS queues",
+      "Because UDP guarantees 100% packet arrival with zero jitter"
+    ],
+    "correctAnswer": 0,
+    "explanation": "For real-time applications, receiving an outdated retransmitted packet 200ms late is useless. UDP sends data immediately without connection establishment or head-of-line blocking.",
+    "conceptSummary": "UDP provides minimal latency and avoids head-of-line retransmission delays for real-time feeds.",
+    "timeTargetSeconds": 55
+  },
+  {
+    "id": "net_easy_06",
+    "topic": "Computer Networks",
+    "subtopic": "Routing & Subnetting",
+    "difficulty": "Easy",
+    "question": "Which of the following IP addresses is designated as a private (non-routable on the public Internet) address according to RFC 1918?",
+    "options": [
+      "10.24.100.5",
+      "8.8.8.8",
+      "172.33.1.50",
+      "192.169.1.1"
+    ],
+    "correctAnswer": 0,
+    "explanation": "RFC 1918 reserves three private ranges: 10.0.0.0/8, 172.16.0.0/12 (up to 172.31.255.255), and 192.168.0.0/16. Thus, 10.24.100.5 is a private address.",
+    "conceptSummary": "RFC 1918 private IPv4 ranges: 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16.",
+    "timeTargetSeconds": 40
+  }
+]

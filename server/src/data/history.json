@@ -1,0 +1,873 @@
+[
+  {
+    "id": "rep_1795190822647",
+    "quizTitle": "Comprehensive CS Adaptive Assessment",
+    "timestamp": "2026-11-20T16:07:02.647Z",
+    "studentName": "Alex Chen",
+    "totalQuestions": 10,
+    "correctCount": 3,
+    "rawAccuracy": 30,
+    "scaledAbilityTheta": -0.83,
+    "scaledAbilityScore": 33,
+    "totalScorePoints": 460,
+    "maxStreak": 1,
+    "totalTimeSpentSeconds": 24,
+    "averageTimePerQuestion": 2,
+    "difficultyBreakdown": {
+      "Easy": {
+        "attempted": 8,
+        "correct": 2
+      },
+      "Medium": {
+        "attempted": 2,
+        "correct": 1
+      },
+      "Hard": {
+        "attempted": 0,
+        "correct": 0
+      }
+    },
+    "topicDiagnostics": [
+      {
+        "topic": "Operating Systems",
+        "totalQuestions": 3,
+        "correctQuestions": 1,
+        "accuracy": 33,
+        "status": "Critical Deficit",
+        "subtopics": [
+          {
+            "name": "Process Scheduling",
+            "total": 1,
+            "correct": 1,
+            "accuracy": 100,
+            "status": "Proficient"
+          },
+          {
+            "name": "Process Management",
+            "total": 1,
+            "correct": 0,
+            "accuracy": 0,
+            "status": "Critical Deficit"
+          },
+          {
+            "name": "Deadlock Avoidance",
+            "total": 1,
+            "correct": 0,
+            "accuracy": 0,
+            "status": "Critical Deficit"
+          }
+        ],
+        "recommendation": "Priority focus required in Operating Systems. Review underlying algorithmic invariants and scheduling models."
+      },
+      {
+        "topic": "Data Structures",
+        "totalQuestions": 3,
+        "correctQuestions": 0,
+        "accuracy": 0,
+        "status": "Critical Deficit",
+        "subtopics": [
+          {
+            "name": "Trees & BST",
+            "total": 1,
+            "correct": 0,
+            "accuracy": 0,
+            "status": "Critical Deficit"
+          },
+          {
+            "name": "Arrays & Strings",
+            "total": 1,
+            "correct": 0,
+            "accuracy": 0,
+            "status": "Critical Deficit"
+          },
+          {
+            "name": "Linked Lists",
+            "total": 1,
+            "correct": 0,
+            "accuracy": 0,
+            "status": "Critical Deficit"
+          }
+        ],
+        "recommendation": "Priority focus required in Data Structures. Review underlying algorithmic invariants and scheduling models."
+      },
+      {
+        "topic": "Algorithms",
+        "totalQuestions": 2,
+        "correctQuestions": 1,
+        "accuracy": 50,
+        "status": "Moderate",
+        "subtopics": [
+          {
+            "name": "Sorting & Searching",
+            "total": 2,
+            "correct": 1,
+            "accuracy": 50,
+            "status": "Needs Improvement"
+          }
+        ],
+        "recommendation": "Good performance. Deepen precision on edge-case scenarios and worst-case complexity bounds."
+      },
+      {
+        "topic": "Computer Networks",
+        "totalQuestions": 2,
+        "correctQuestions": 1,
+        "accuracy": 50,
+        "status": "Moderate",
+        "subtopics": [
+          {
+            "name": "TCP/IP & OSI",
+            "total": 1,
+            "correct": 1,
+            "accuracy": 100,
+            "status": "Proficient"
+          },
+          {
+            "name": "DNS & HTTP",
+            "total": 1,
+            "correct": 0,
+            "accuracy": 0,
+            "status": "Critical Deficit"
+          }
+        ],
+        "recommendation": "Good performance. Deepen precision on edge-case scenarios and worst-case complexity bounds."
+      }
+    ],
+    "weakTopics": [
+      "Operating Systems",
+      "Data Structures"
+    ],
+    "weakSubtopics": [
+      "Process Management",
+      "Deadlock Avoidance",
+      "Trees & BST",
+      "Arrays & Strings",
+      "Linked Lists",
+      "DNS & HTTP"
+    ],
+    "cohortPercentile": 5,
+    "cohortComparison": {
+      "userScore": 30,
+      "cohortMean": 63,
+      "topTenThreshold": 85,
+      "distribution": [
+        {
+          "scoreBand": "0-20%",
+          "percentageStudents": 3
+        },
+        {
+          "scoreBand": "21-40%",
+          "percentageStudents": 10,
+          "isUserBand": true
+        },
+        {
+          "scoreBand": "41-60%",
+          "percentageStudents": 28
+        },
+        {
+          "scoreBand": "61-80%",
+          "percentageStudents": 41
+        },
+        {
+          "scoreBand": "81-100%",
+          "percentageStudents": 18
+        }
+      ]
+    },
+    "earnedBadges": [
+      {
+        "id": "resilient_scholar",
+        "title": "Adaptive Challenger 🎯",
+        "icon": "target",
+        "description": "Completed full computerized adaptive diagnostic test."
+      }
+    ],
+    "answers": [
+      {
+        "questionId": "os_med_01",
+        "questionText": "In a Round-Robin CPU scheduling algorithm with a time quantum of 4ms, what is the most significant downside of choosing a time quantum that is extremely small (e.g., 0.1ms)?",
+        "topic": "Operating Systems",
+        "subtopic": "Process Scheduling",
+        "difficulty": "Medium",
+        "selectedOption": 1,
+        "correctAnswer": 1,
+        "isCorrect": true,
+        "timeSpentSeconds": 4,
+        "timeTargetSeconds": 60,
+        "options": [
+          "Process starvation occurs for I/O bound jobs",
+          "CPU utilization drops dramatically due to excessive context-switch overhead",
+          "The algorithm degrades into First-Come-First-Served (FCFS)",
+          "Priority inversion causes high-priority threads to block indefinitely"
+        ],
+        "explanation": "If the time quantum is extremely small relative to the context switch duration, the CPU spends a substantial percentage of its time performing state saving and restoring rather than executing user code, degrading overall throughput.",
+        "conceptSummary": "Time quantum in Round-Robin must be significantly larger than context switch overhead."
+      },
+      {
+        "questionId": "ds_med_01",
+        "questionText": "In an AVL tree, what sequence of rotations is required when a new node is inserted into the left subtree of the right child of the root (Right-Left imbalance)?",
+        "topic": "Data Structures",
+        "subtopic": "Trees & BST",
+        "difficulty": "Medium",
+        "selectedOption": 2,
+        "correctAnswer": 1,
+        "isCorrect": false,
+        "timeSpentSeconds": 2,
+        "timeTargetSeconds": 60,
+        "options": [
+          "Single Left Rotation",
+          "Right Rotation on the right child, followed by a Left Rotation on the root (RL Double Rotation)",
+          "Left Rotation on the root, followed by a Right Rotation on the left child",
+          "Single Right Rotation"
+        ],
+        "explanation": "An RL imbalance (balance factor of node is -2 and its right child is +1) is resolved by first performing a Right rotation on the right child to convert it into an RR case, followed by a Left rotation on the node itself.",
+        "conceptSummary": "RL imbalance in AVL trees is fixed via a Right rotation on the child followed by a Left rotation on the parent."
+      },
+      {
+        "questionId": "algo_easy_01",
+        "questionText": "What is the worst-case time complexity of standard QuickSort when no randomized pivot or median-of-three is applied?",
+        "topic": "Algorithms",
+        "subtopic": "Sorting & Searching",
+        "difficulty": "Easy",
+        "selectedOption": 3,
+        "correctAnswer": 0,
+        "isCorrect": false,
+        "timeSpentSeconds": 3,
+        "timeTargetSeconds": 40,
+        "options": [
+          "O(N^2)",
+          "O(N log N)",
+          "O(N)",
+          "O(log N)"
+        ],
+        "explanation": "When the chosen pivot is always the maximum or minimum element (e.g. already sorted input with first or last element as pivot), the recursion tree degenerates into depth N, resulting in O(N^2) comparisons.",
+        "conceptSummary": "QuickSort degenerates to O(N^2) on unbalanced partitions if pivots are poorly selected."
+      },
+      {
+        "questionId": "net_easy_01",
+        "questionText": "In the standard 7-layer OSI reference model, at which layer do IP addresses and packet routing operate?",
+        "topic": "Computer Networks",
+        "subtopic": "TCP/IP & OSI",
+        "difficulty": "Easy",
+        "selectedOption": 0,
+        "correctAnswer": 0,
+        "isCorrect": true,
+        "timeSpentSeconds": 2,
+        "timeTargetSeconds": 40,
+        "options": [
+          "Layer 3 (Network Layer)",
+          "Layer 2 (Data Link Layer)",
+          "Layer 4 (Transport Layer)",
+          "Layer 7 (Application Layer)"
+        ],
+        "explanation": "The Network Layer (Layer 3) handles logical host addressing (IPv4/IPv6), subnetting, and path determination/routing across intermediate networks.",
+        "conceptSummary": "IP addressing and inter-network routing operate strictly at OSI Layer 3 (Network)."
+      },
+      {
+        "questionId": "os_easy_01",
+        "questionText": "Which of the following states is NOT part of the standard 5-state process execution lifecycle model?",
+        "topic": "Operating Systems",
+        "subtopic": "Process Management",
+        "difficulty": "Easy",
+        "selectedOption": 1,
+        "correctAnswer": 2,
+        "isCorrect": false,
+        "timeSpentSeconds": 2,
+        "timeTargetSeconds": 40,
+        "options": [
+          "Ready",
+          "Running",
+          "Compiling",
+          "Terminated"
+        ],
+        "explanation": "The classical 5-state process lifecycle comprises: New, Ready, Running, Waiting (Blocked), and Terminated. Compiling is an external software development stage, not a kernel process lifecycle state.",
+        "conceptSummary": "The OS kernel manages processes through New, Ready, Running, Waiting, and Terminated states."
+      },
+      {
+        "questionId": "ds_easy_01",
+        "questionText": "What is the amortized time complexity of appending an element to a dynamic array (such as std::vector in C++ or ArrayList in Java)?",
+        "topic": "Data Structures",
+        "subtopic": "Arrays & Strings",
+        "difficulty": "Easy",
+        "selectedOption": 2,
+        "correctAnswer": 0,
+        "isCorrect": false,
+        "timeSpentSeconds": 3,
+        "timeTargetSeconds": 40,
+        "options": [
+          "O(1)",
+          "O(log N)",
+          "O(N)",
+          "O(N^2)"
+        ],
+        "explanation": "Although doubling capacity during resize takes O(N) work, resizing happens infrequently (every 2^k insertions). Over N insertions, total copies are roughly 2N, making the amortized cost per append O(1).",
+        "conceptSummary": "Dynamic array append has O(1) amortized complexity via geometric capacity scaling."
+      },
+      {
+        "questionId": "algo_easy_02",
+        "questionText": "Which of the following sorting algorithms is guaranteed to be stable and have an O(N log N) worst-case time complexity?",
+        "topic": "Algorithms",
+        "subtopic": "Sorting & Searching",
+        "difficulty": "Easy",
+        "selectedOption": 0,
+        "correctAnswer": 0,
+        "isCorrect": true,
+        "timeSpentSeconds": 2,
+        "timeTargetSeconds": 45,
+        "options": [
+          "Merge Sort",
+          "Quick Sort",
+          "Heap Sort",
+          "Selection Sort"
+        ],
+        "explanation": "Merge Sort always divides arrays evenly and merges them in linear time, guaranteeing O(N log N) worst-case time while preserving the relative order of duplicate keys (stability).",
+        "conceptSummary": "Merge Sort is both worst-case O(N log N) and stable."
+      },
+      {
+        "questionId": "net_easy_02",
+        "questionText": "What is the default transport-layer protocol and port number used for standard DNS lookups?",
+        "topic": "Computer Networks",
+        "subtopic": "DNS & HTTP",
+        "difficulty": "Easy",
+        "selectedOption": 2,
+        "correctAnswer": 0,
+        "isCorrect": false,
+        "timeSpentSeconds": 2,
+        "timeTargetSeconds": 40,
+        "options": [
+          "UDP port 53",
+          "TCP port 80",
+          "UDP port 67",
+          "TCP port 443"
+        ],
+        "explanation": "Standard DNS queries and responses use UDP port 53 for low latency and minimal overhead without connection setup. (TCP 53 is used for zone transfers and responses exceeding 512 bytes).",
+        "conceptSummary": "DNS operates primarily over UDP port 53 for lightweight, low-latency name resolution."
+      },
+      {
+        "questionId": "os_easy_02",
+        "questionText": "Which of the following is NOT one of the Coffman conditions required for a deadlock to occur?",
+        "topic": "Operating Systems",
+        "subtopic": "Deadlock Avoidance",
+        "difficulty": "Easy",
+        "selectedOption": 1,
+        "correctAnswer": 2,
+        "isCorrect": false,
+        "timeSpentSeconds": 2,
+        "timeTargetSeconds": 45,
+        "options": [
+          "Mutual Exclusion",
+          "Hold and Wait",
+          "Preemptive Priority Revocation",
+          "Circular Wait"
+        ],
+        "explanation": "The four Coffman conditions necessary and sufficient for deadlock are: Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait. Preemption is actually a mechanism to prevent or break deadlock.",
+        "conceptSummary": "Deadlock requires Mutual Exclusion, Hold & Wait, No Preemption, and Circular Wait."
+      },
+      {
+        "questionId": "ds_easy_02",
+        "questionText": "Which algorithm can detect whether a singly linked list contains a cycle using O(1) auxiliary memory?",
+        "topic": "Data Structures",
+        "subtopic": "Linked Lists",
+        "difficulty": "Easy",
+        "selectedOption": 2,
+        "correctAnswer": 1,
+        "isCorrect": false,
+        "timeSpentSeconds": 2,
+        "timeTargetSeconds": 45,
+        "options": [
+          "Dijkstra's Shortest Path",
+          "Floyd's Cycle-Finding Algorithm (Tortoise and Hare)",
+          "Kruskal's Disjoint Set Union",
+          "Tarjan's Strongly Connected Components"
+        ],
+        "explanation": "Floyd's Tortoise and Hare algorithm advances two pointers at different speeds (slow by 1, fast by 2). If a cycle exists, the fast pointer will inevitably lap and meet the slow pointer within the loop using O(1) extra space.",
+        "conceptSummary": "Floyd's two-pointer technique detects cycles in linked lists in O(N) time and O(1) space."
+      }
+    ]
+  },
+  {
+    "id": "rep_1795190287995",
+    "quizTitle": "Operating Systems Adaptive Assessment",
+    "timestamp": "2026-11-20T15:58:07.996Z",
+    "studentName": "Alex Chen",
+    "totalQuestions": 5,
+    "correctCount": 0,
+    "rawAccuracy": 0,
+    "scaledAbilityTheta": -2.5,
+    "scaledAbilityScore": 0,
+    "totalScorePoints": 0,
+    "maxStreak": 0,
+    "totalTimeSpentSeconds": 19,
+    "averageTimePerQuestion": 4,
+    "difficultyBreakdown": {
+      "Easy": {
+        "attempted": 4,
+        "correct": 0
+      },
+      "Medium": {
+        "attempted": 1,
+        "correct": 0
+      },
+      "Hard": {
+        "attempted": 0,
+        "correct": 0
+      }
+    },
+    "topicDiagnostics": [
+      {
+        "topic": "Operating Systems",
+        "totalQuestions": 5,
+        "correctQuestions": 0,
+        "accuracy": 0,
+        "status": "Critical Deficit",
+        "subtopics": [
+          {
+            "name": "Process Scheduling",
+            "total": 1,
+            "correct": 0,
+            "accuracy": 0,
+            "status": "Critical Deficit"
+          },
+          {
+            "name": "Process Management",
+            "total": 2,
+            "correct": 0,
+            "accuracy": 0,
+            "status": "Critical Deficit"
+          },
+          {
+            "name": "Deadlock Avoidance",
+            "total": 1,
+            "correct": 0,
+            "accuracy": 0,
+            "status": "Critical Deficit"
+          },
+          {
+            "name": "Virtual Memory & Paging",
+            "total": 1,
+            "correct": 0,
+            "accuracy": 0,
+            "status": "Critical Deficit"
+          }
+        ],
+        "recommendation": "Priority focus required in Operating Systems. Review underlying algorithmic invariants and scheduling models."
+      },
+      {
+        "topic": "Data Structures",
+        "totalQuestions": 0,
+        "correctQuestions": 0,
+        "accuracy": 0,
+        "status": "Moderate",
+        "subtopics": [],
+        "recommendation": "Good performance. Deepen precision on edge-case scenarios and worst-case complexity bounds."
+      },
+      {
+        "topic": "Algorithms",
+        "totalQuestions": 0,
+        "correctQuestions": 0,
+        "accuracy": 0,
+        "status": "Moderate",
+        "subtopics": [],
+        "recommendation": "Good performance. Deepen precision on edge-case scenarios and worst-case complexity bounds."
+      },
+      {
+        "topic": "Computer Networks",
+        "totalQuestions": 0,
+        "correctQuestions": 0,
+        "accuracy": 0,
+        "status": "Moderate",
+        "subtopics": [],
+        "recommendation": "Good performance. Deepen precision on edge-case scenarios and worst-case complexity bounds."
+      }
+    ],
+    "weakTopics": [
+      "Operating Systems"
+    ],
+    "weakSubtopics": [
+      "Process Scheduling",
+      "Process Management",
+      "Deadlock Avoidance",
+      "Virtual Memory & Paging"
+    ],
+    "cohortPercentile": 5,
+    "cohortComparison": {
+      "userScore": 0,
+      "cohortMean": 63,
+      "topTenThreshold": 85,
+      "distribution": [
+        {
+          "scoreBand": "0-20%",
+          "percentageStudents": 3,
+          "isUserBand": true
+        },
+        {
+          "scoreBand": "21-40%",
+          "percentageStudents": 10
+        },
+        {
+          "scoreBand": "41-60%",
+          "percentageStudents": 28
+        },
+        {
+          "scoreBand": "61-80%",
+          "percentageStudents": 41
+        },
+        {
+          "scoreBand": "81-100%",
+          "percentageStudents": 18
+        }
+      ]
+    },
+    "earnedBadges": [
+      {
+        "id": "resilient_scholar",
+        "title": "Adaptive Challenger 🎯",
+        "icon": "target",
+        "description": "Completed full computerized adaptive diagnostic test."
+      }
+    ],
+    "answers": [
+      {
+        "questionId": "os_med_01",
+        "questionText": "In a Round-Robin CPU scheduling algorithm with a time quantum of 4ms, what is the most significant downside of choosing a time quantum that is extremely small (e.g., 0.1ms)?",
+        "topic": "Operating Systems",
+        "subtopic": "Process Scheduling",
+        "difficulty": "Medium",
+        "selectedOption": 2,
+        "correctAnswer": 1,
+        "isCorrect": false,
+        "timeSpentSeconds": 9,
+        "timeTargetSeconds": 60,
+        "options": [
+          "Process starvation occurs for I/O bound jobs",
+          "CPU utilization drops dramatically due to excessive context-switch overhead",
+          "The algorithm degrades into First-Come-First-Served (FCFS)",
+          "Priority inversion causes high-priority threads to block indefinitely"
+        ],
+        "explanation": "If the time quantum is extremely small relative to the context switch duration, the CPU spends a substantial percentage of its time performing state saving and restoring rather than executing user code, degrading overall throughput.",
+        "conceptSummary": "Time quantum in Round-Robin must be significantly larger than context switch overhead."
+      },
+      {
+        "questionId": "os_easy_01",
+        "questionText": "Which of the following states is NOT part of the standard 5-state process execution lifecycle model?",
+        "topic": "Operating Systems",
+        "subtopic": "Process Management",
+        "difficulty": "Easy",
+        "selectedOption": 1,
+        "correctAnswer": 2,
+        "isCorrect": false,
+        "timeSpentSeconds": 2,
+        "timeTargetSeconds": 40,
+        "options": [
+          "Ready",
+          "Running",
+          "Compiling",
+          "Terminated"
+        ],
+        "explanation": "The classical 5-state process lifecycle comprises: New, Ready, Running, Waiting (Blocked), and Terminated. Compiling is an external software development stage, not a kernel process lifecycle state.",
+        "conceptSummary": "The OS kernel manages processes through New, Ready, Running, Waiting, and Terminated states."
+      },
+      {
+        "questionId": "os_easy_02",
+        "questionText": "Which of the following is NOT one of the Coffman conditions required for a deadlock to occur?",
+        "topic": "Operating Systems",
+        "subtopic": "Deadlock Avoidance",
+        "difficulty": "Easy",
+        "selectedOption": 0,
+        "correctAnswer": 2,
+        "isCorrect": false,
+        "timeSpentSeconds": 3,
+        "timeTargetSeconds": 45,
+        "options": [
+          "Mutual Exclusion",
+          "Hold and Wait",
+          "Preemptive Priority Revocation",
+          "Circular Wait"
+        ],
+        "explanation": "The four Coffman conditions necessary and sufficient for deadlock are: Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait. Preemption is actually a mechanism to prevent or break deadlock.",
+        "conceptSummary": "Deadlock requires Mutual Exclusion, Hold & Wait, No Preemption, and Circular Wait."
+      },
+      {
+        "questionId": "os_easy_03",
+        "questionText": "What is the term for the situation where an operating system spends more time swapping pages into and out of memory than executing actual instructions?",
+        "topic": "Operating Systems",
+        "subtopic": "Virtual Memory & Paging",
+        "difficulty": "Easy",
+        "selectedOption": 3,
+        "correctAnswer": 1,
+        "isCorrect": false,
+        "timeSpentSeconds": 2,
+        "timeTargetSeconds": 40,
+        "options": [
+          "Deadlock",
+          "Thrashing",
+          "Pipelining",
+          "Fragmentation"
+        ],
+        "explanation": "Thrashing occurs when the total working sets of active processes exceed the physical memory capacity, causing continuous page faults and disk I/O.",
+        "conceptSummary": "Thrashing occurs when active working sets exceed physical RAM, causing continuous swapping."
+      },
+      {
+        "questionId": "os_easy_04",
+        "questionText": "What is a zombie process in Unix-like operating systems?",
+        "topic": "Operating Systems",
+        "subtopic": "Process Management",
+        "difficulty": "Easy",
+        "selectedOption": 1,
+        "correctAnswer": 0,
+        "isCorrect": false,
+        "timeSpentSeconds": 3,
+        "timeTargetSeconds": 45,
+        "options": [
+          "A process that has completed execution via exit(), but still has an entry in the process table because its parent has not yet read its exit status with wait()",
+          "A process whose parent has terminated, causing it to be adopted by systemd/init",
+          "A process that is spinning in an infinite loop consuming 100% CPU",
+          "A process running with root privileges that has become unresponsive to SIGKILL"
+        ],
+        "explanation": "A zombie process has finished execution but remains in the OS process control table so that its parent can read its exit status. Once the parent calls wait() or waitpid(), the zombie entry is released.",
+        "conceptSummary": "Zombie processes have exited but await parent reaping via wait()."
+      }
+    ]
+  },
+  {
+    "id": "rep_1795189428736",
+    "quizTitle": "Data Structures Adaptive Assessment",
+    "timestamp": "2026-11-20T15:43:48.736Z",
+    "studentName": "Alex Chen",
+    "totalQuestions": 5,
+    "correctCount": 4,
+    "rawAccuracy": 80,
+    "scaledAbilityTheta": 1.15,
+    "scaledAbilityScore": 73,
+    "totalScorePoints": 1385,
+    "maxStreak": 3,
+    "totalTimeSpentSeconds": 37,
+    "averageTimePerQuestion": 7,
+    "difficultyBreakdown": {
+      "Easy": {
+        "attempted": 0,
+        "correct": 0
+      },
+      "Medium": {
+        "attempted": 3,
+        "correct": 3
+      },
+      "Hard": {
+        "attempted": 2,
+        "correct": 1
+      }
+    },
+    "topicDiagnostics": [
+      {
+        "topic": "Operating Systems",
+        "totalQuestions": 0,
+        "correctQuestions": 0,
+        "accuracy": 0,
+        "status": "Moderate",
+        "subtopics": [],
+        "recommendation": "Good performance. Deepen precision on edge-case scenarios and worst-case complexity bounds."
+      },
+      {
+        "topic": "Data Structures",
+        "totalQuestions": 5,
+        "correctQuestions": 4,
+        "accuracy": 80,
+        "status": "Proficient",
+        "subtopics": [
+          {
+            "name": "Trees & BST",
+            "total": 2,
+            "correct": 2,
+            "accuracy": 100,
+            "status": "Proficient"
+          },
+          {
+            "name": "Hash Tables & Heaps",
+            "total": 2,
+            "correct": 1,
+            "accuracy": 50,
+            "status": "Needs Improvement"
+          },
+          {
+            "name": "Graphs",
+            "total": 1,
+            "correct": 1,
+            "accuracy": 100,
+            "status": "Proficient"
+          }
+        ],
+        "recommendation": "Solid grasp of fundamental Data Structures patterns."
+      },
+      {
+        "topic": "Algorithms",
+        "totalQuestions": 0,
+        "correctQuestions": 0,
+        "accuracy": 0,
+        "status": "Moderate",
+        "subtopics": [],
+        "recommendation": "Good performance. Deepen precision on edge-case scenarios and worst-case complexity bounds."
+      },
+      {
+        "topic": "Computer Networks",
+        "totalQuestions": 0,
+        "correctQuestions": 0,
+        "accuracy": 0,
+        "status": "Moderate",
+        "subtopics": [],
+        "recommendation": "Good performance. Deepen precision on edge-case scenarios and worst-case complexity bounds."
+      }
+    ],
+    "weakTopics": [],
+    "weakSubtopics": [],
+    "cohortPercentile": 87,
+    "cohortComparison": {
+      "userScore": 80,
+      "cohortMean": 63,
+      "topTenThreshold": 85,
+      "distribution": [
+        {
+          "scoreBand": "0-20%",
+          "percentageStudents": 3
+        },
+        {
+          "scoreBand": "21-40%",
+          "percentageStudents": 10
+        },
+        {
+          "scoreBand": "41-60%",
+          "percentageStudents": 28
+        },
+        {
+          "scoreBand": "61-80%",
+          "percentageStudents": 41,
+          "isUserBand": true
+        },
+        {
+          "scoreBand": "81-100%",
+          "percentageStudents": 18
+        }
+      ]
+    },
+    "earnedBadges": [
+      {
+        "id": "streak_3",
+        "title": "Blazing Streak 🔥",
+        "icon": "flame",
+        "description": "Sustained 3+ consecutive correct answers in high pressure testing."
+      },
+      {
+        "id": "hard_tier",
+        "title": "Titan of Complexity ⚡",
+        "icon": "zap",
+        "description": "Successfully answered Hard-tier questions with deep analytical rigor."
+      },
+      {
+        "id": "top_performer",
+        "title": "Master Strategist 🏆",
+        "icon": "trophy",
+        "description": "Achieved an elite accuracy score exceeding 80%."
+      }
+    ],
+    "answers": [
+      {
+        "questionId": "ds_med_01",
+        "questionText": "In an AVL tree, what sequence of rotations is required when a new node is inserted into the left subtree of the right child of the root (Right-Left imbalance)?",
+        "topic": "Data Structures",
+        "subtopic": "Trees & BST",
+        "difficulty": "Medium",
+        "selectedOption": 1,
+        "correctAnswer": 1,
+        "isCorrect": true,
+        "timeSpentSeconds": 12,
+        "timeTargetSeconds": 60,
+        "options": [
+          "Single Left Rotation",
+          "Right Rotation on the right child, followed by a Left Rotation on the root (RL Double Rotation)",
+          "Left Rotation on the root, followed by a Right Rotation on the left child",
+          "Single Right Rotation"
+        ],
+        "explanation": "An RL imbalance (balance factor of node is -2 and its right child is +1) is resolved by first performing a Right rotation on the right child to convert it into an RR case, followed by a Left rotation on the node itself.",
+        "conceptSummary": "RL imbalance in AVL trees is fixed via a Right rotation on the child followed by a Left rotation on the parent."
+      },
+      {
+        "questionId": "ds_med_02",
+        "questionText": "What is the worst-case time complexity of building a Binary Heap from an unordered array of N elements using Floyd's buildHeap (bottom-up sift-down) algorithm?",
+        "topic": "Data Structures",
+        "subtopic": "Hash Tables & Heaps",
+        "difficulty": "Medium",
+        "selectedOption": 0,
+        "correctAnswer": 0,
+        "isCorrect": true,
+        "timeSpentSeconds": 8,
+        "timeTargetSeconds": 60,
+        "options": [
+          "O(N)",
+          "O(N log N)",
+          "O(N^2)",
+          "O(log N)"
+        ],
+        "explanation": "Bottom-up heap construction runs sift-down from the lowest internal nodes up to the root. The sum of (height * number of nodes at height) converges to O(N), which is mathematically superior to N repeated insertions taking O(N log N).",
+        "conceptSummary": "Floyd's bottom-up buildHeap constructs a binary heap in linear O(N) time."
+      },
+      {
+        "questionId": "ds_hard_01",
+        "questionText": "In a Red-Black Tree, what is the maximum possible height of a tree containing N internal keys?",
+        "topic": "Data Structures",
+        "subtopic": "Trees & BST",
+        "difficulty": "Hard",
+        "selectedOption": 1,
+        "correctAnswer": 1,
+        "isCorrect": true,
+        "timeSpentSeconds": 5,
+        "timeTargetSeconds": 80,
+        "options": [
+          "log2(N + 1)",
+          "2 * log2(N + 1)",
+          "1.44 * log2(N + 2)",
+          "N - 1"
+        ],
+        "explanation": "Because red nodes cannot have red children (no two consecutive red nodes) and all paths from root to leaves have the same black-height bh, the longest path (alternating red and black) is at most twice the shortest path (all black). Thus max height <= 2 * log2(N + 1).",
+        "conceptSummary": "Red-Black tree property ensures max tree height is bounded strictly by 2 * log2(N + 1)."
+      },
+      {
+        "questionId": "ds_hard_02",
+        "questionText": "In a Fibonacci Heap, what are the amortized time complexities for the Insert, Find-Minimum, and Decrease-Key operations respectively?",
+        "topic": "Data Structures",
+        "subtopic": "Hash Tables & Heaps",
+        "difficulty": "Hard",
+        "selectedOption": 2,
+        "correctAnswer": 0,
+        "isCorrect": false,
+        "timeSpentSeconds": 5,
+        "timeTargetSeconds": 85,
+        "options": [
+          "O(1), O(1), and O(1)",
+          "O(1), O(log N), and O(log N)",
+          "O(log N), O(1), and O(log N)",
+          "O(N), O(1), and O(1)"
+        ],
+        "explanation": "Fibonacci heaps achieve O(1) amortized time for Insert, Find-Min, Union, and Decrease-Key operations via lazy structural consolidation, making Dijkstra's algorithm run in O(E + V log V). Only Delete and Extract-Min are O(log N) amortized.",
+        "conceptSummary": "Fibonacci Heaps support O(1) amortized Decrease-Key and Insert operations."
+      },
+      {
+        "questionId": "ds_med_03",
+        "questionText": "What is the space complexity of representing a sparse graph with V vertices and E edges using an Adjacency List versus an Adjacency Matrix?",
+        "topic": "Data Structures",
+        "subtopic": "Graphs",
+        "difficulty": "Medium",
+        "selectedOption": 0,
+        "correctAnswer": 0,
+        "isCorrect": true,
+        "timeSpentSeconds": 7,
+        "timeTargetSeconds": 50,
+        "options": [
+          "List: O(V + E), Matrix: O(V^2)",
+          "List: O(V * E), Matrix: O(V + E)",
+          "List: O(E^2), Matrix: O(V^2)",
+          "List: O(V), Matrix: O(E)"
+        ],
+        "explanation": "An Adjacency List stores each vertex and each edge once (or twice for undirected), taking O(V + E) memory. An Adjacency Matrix always allocates a V x V grid, consuming O(V^2) memory regardless of sparsity.",
+        "conceptSummary": "Adjacency Lists use O(V + E) space, ideal for sparse graphs; Adjacency Matrices use O(V^2)."
+      }
+    ]
+  }
+]
